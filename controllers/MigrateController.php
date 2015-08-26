@@ -1,18 +1,15 @@
 <?php
 /**
- * @link http://www.yiiframework.com/
+ * @link      http://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license   http://www.yiiframework.com/license/
  */
 
 namespace c006\console\controllers;
 
 use Yii;
 use yii\db\Connection;
-use yii\db\Query;
 use yii\di\Instance;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Console;
 
 /**
  * Manages application migrations.
@@ -51,7 +48,7 @@ use yii\helpers\Console;
  * ~~~
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
+ * @since  2.0
  */
 class MigrateController extends \c006\console\controllers\BaseMigrateController
 {
@@ -85,7 +82,9 @@ class MigrateController extends \c006\console\controllers\BaseMigrateController
     /**
      * This method is invoked right before an action is to be executed (after all possible filters.)
      * It checks the existence of the [[migrationPath]].
+     *
      * @param \yii\base\Action $action the action to be executed.
+     *
      * @return boolean whether the action should continue to be executed.
      */
     public function beforeAction($action)
@@ -94,27 +93,39 @@ class MigrateController extends \c006\console\controllers\BaseMigrateController
             if ($action->id !== 'create') {
                 $this->db = Instance::ensure($this->db, Connection::className());
             }
-            return true;
+
+            return TRUE;
         } else {
-            return false;
+            return FALSE;
         }
     }
 
     /**
      * Creates a new migration instance.
+     *
      * @param string $class the migration class name
+     *
      * @return \yii\db\Migration the migration instance
      */
     protected function createMigration($class)
     {
-        $file = $this->migrationPath . DIRECTORY_SEPARATOR . $class . '.php';
+        $file = $this->migrationPath . '/' . $class . '.php';
+
         require_once($file);
 
-        return new $class(['db' => $this->db]);
+        foreach (get_declared_classes() as $k => $v) {
+            if (stripos($v, $class) !== FALSE) {
+                return new $v(['db' => $this->db]);
+            }
+        }
+
+        $this->stdout("No migration class found, check the name.\n");
+
     }
 
 
-    public function checkAction() {
+    public function checkAction()
+    {
 
     }
 
@@ -148,4 +159,5 @@ class MigrateController extends \c006\console\controllers\BaseMigrateController
     protected function removeMigrationHistory($version)
     {
         // TODO: Implement removeMigrationHistory() method.
-}}
+    }
+}

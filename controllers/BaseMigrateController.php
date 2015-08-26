@@ -119,8 +119,7 @@ abstract class BaseMigrateController extends Controller
                                     foreach ($folder['sub_folders'] as $file) {
                                         $file = $file['item'];
                                         if ($file['file'] == $migration . '.php') {
-                                            //die($file['relative'] .'/'. $file['file'] ."\n\n");
-                                            $this->migrationPath = $file['path'];
+                                            $this->migrationPath = CoreHelper::cleanSlashInPath($file['path'], FALSE);
                                         }
                                     }
                                 }
@@ -131,9 +130,6 @@ abstract class BaseMigrateController extends Controller
                 }
             }
         }
-
-        //Yii::warning(print_r($array, TRUE), '');
-//        exit;
 
         $this->stdout("\t$migration\n");
         $this->stdout("\n");
