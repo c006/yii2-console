@@ -7,7 +7,7 @@ Overview
 
 An alternative console `php yii migrate2`
 
-
+**Working out a bug, please wait to download**
 
 Installation
 ------------
