@@ -48,13 +48,11 @@ Required
 
 
 
-The tables must already exist in website schema.
-
 
 Usage
 -----
 
-No path or history required, just the migration.
+No path or history required, just the migration class name.
 
 
 >
