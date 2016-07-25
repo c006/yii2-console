@@ -506,7 +506,7 @@ abstract class BaseMigrateController extends Controller
         }
 
         $this->stdout("*** applying $class\n", Console::FG_YELLOW);
-        $start = microtime(TRUE);
+        $start     = microtime(TRUE);
         $migration = $this->createMigration($class);
         if ($migration->up() !== FALSE) {
             $this->addMigrationHistory($class);
@@ -536,7 +536,7 @@ abstract class BaseMigrateController extends Controller
         }
 
         $this->stdout("*** reverting $class\n", Console::FG_YELLOW);
-        $start = microtime(TRUE);
+        $start     = microtime(TRUE);
         $migration = $this->createMigration($class);
         if ($migration->down() !== FALSE) {
             $this->removeMigrationHistory($class);
@@ -574,7 +574,7 @@ abstract class BaseMigrateController extends Controller
      */
     protected function migrateToTime($time)
     {
-        $count = 0;
+        $count      = 0;
         $migrations = array_values($this->getMigrationHistory(NULL));
         while ($count < count($migrations) && $migrations[ $count ] > $time) {
             ++$count;
@@ -637,7 +637,7 @@ abstract class BaseMigrateController extends Controller
         }
 
         $migrations = [];
-        $handle = opendir($this->migrationPath);
+        $handle     = opendir($this->migrationPath);
         while (($file = readdir($handle)) !== FALSE) {
             if ($file === '.' || $file === '..') {
                 continue;
