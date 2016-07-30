@@ -5,7 +5,7 @@ Yii2 Console
 Overview
 ---------
 
-An alternative console `php yii migrate2`
+An alternative console to `php yii migrate`
 
 
 Installation
@@ -16,13 +16,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-source "c006/yii2-console" "dev-master"
+php composer.phar require --prefer-source "c006/yii2-console" "*"
 ```
 
 or add
 
 ```
-"c006/yii2-console": "dev-master"
+"c006/yii2-console": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -37,10 +37,6 @@ Required
 
 >
         'modules'    => [
-            ...
-            ...
-            ...
-            /* Use any name you wish */
             'migrate2' => [
                 'class' => 'c006\console\Module',
             ],
@@ -53,10 +49,10 @@ Usage
 -----
 
 No path or history required, just the migration class name.
-
+Default action is "up"
 
 >
-    php yii migrate2/up m_0000_0000_my_extension
+    php yii migrate2 m_0000_0000_my_extension
     
 >
     php yii migrate2/down m_0000_0000_my_extension
@@ -69,12 +65,8 @@ No path or history required, just the migration class name.
 Notes
 --------
 
-
 + Use after initial migrate
 + Only works with vendors
-
-
-
 
 
 Comments / Suggestions

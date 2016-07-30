@@ -38,6 +38,9 @@ abstract class BaseMigrateController extends Controller
      */
     public $templateFile;
 
+    /* C006 */
+    public $auto_override = FALSE;
+
 
     function init()
     {
@@ -134,7 +137,7 @@ abstract class BaseMigrateController extends Controller
         $this->stdout("\t$migration\n");
         $this->stdout("\n");
 
-        if ($this->confirm("Run: ", FALSE)) {
+        if ($this->auto_override || $this->confirm("Run: ", FALSE)) {
             if (!$this->migrateUp($migration)) {
                 $this->stdout("\nMigration failed.\n", Console::FG_RED);
 
