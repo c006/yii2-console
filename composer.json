@@ -1,0 +1,23 @@
+{
+  "name": "c006/yii2-console",
+  "description": "An alternative to yii migrate",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension",
+    "migrate",
+    "console"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jon Chambers",
+      "email": "jchambers.dev@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "c006\\console\\": ""
+    }
+  }
+}
