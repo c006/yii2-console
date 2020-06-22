@@ -48,6 +48,8 @@ Required
 Usage
 -----
 
+Easy to use!
+
 No path or history required, just the migration class name.
 Default action is "up"
 
